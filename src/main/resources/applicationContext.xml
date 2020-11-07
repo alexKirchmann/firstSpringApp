@@ -10,7 +10,7 @@
     <context:property-placeholder location="classpath:musicPlayer.properties"/>
 
     <bean id="musicBeanClassic"
-          class="ua.study.ElectronicMusic">
+          class="ua.study.ClassicalMusic">
     </bean>
 
     <bean id="musicBeanRock"
@@ -22,7 +22,8 @@
     </bean>
 
     <bean id="musicPlayer"
-          class="ua.study.MusicPlayer">
+          class="ua.study.MusicPlayer"
+          scope="prototype">
         <property name="name" value="${musicPlayer.name}"/>
         <property name="musicList">
             <list value-type="ua.study.Music">
