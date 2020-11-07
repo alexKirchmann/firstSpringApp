@@ -5,22 +5,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestSpring {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Music music1 = context.getBean("rockMusic", Music.class);
+        Music music2 = context.getBean("classicalMusic", Music.class);
 
-        MusicPlayer musicPlayer1 = context.getBean("musicPlayer", MusicPlayer.class);
-        MusicPlayer musicPlayer2 = context.getBean("musicPlayer", MusicPlayer.class);
-
-        boolean comprasion = musicPlayer1 == musicPlayer2;
-
-        System.out.println(comprasion);
-
-        System.out.println(musicPlayer1);
-        System.out.println(musicPlayer2);
-
-        musicPlayer1.setVolume(10);
-
-        System.out.println(musicPlayer1.getVolume()+"\n"+musicPlayer2.getVolume());
-
+        MusicPlayer musicPlayer1 = new MusicPlayer(music1);
         musicPlayer1.playMusic();
+
+        MusicPlayer musicPlayer2 = new MusicPlayer(music2);
         musicPlayer2.playMusic();
 
         context.close();
