@@ -10,4 +10,9 @@
     <bean id="musicBean"
           class="ua.study.ElectronicMusic">
     </bean>
+
+    <bean id="musicPlayer"
+          class="ua.study.MusicPlayer">
+        <constructor-arg ref="musicBean"/>
+    </bean>
 </beans>
