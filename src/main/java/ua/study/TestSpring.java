@@ -5,14 +5,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestSpring {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-
         MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-        System.out.println(musicPlayer.playMusic(Genre.CLASSICAL));
-        System.out.println(musicPlayer.playMusic(Genre.ROCK));
 
-        Computer computer = context.getBean("computer", Computer.class);
-        System.out.println(computer.toString());
+        System.out.println(musicPlayer.getName() + "\n" + musicPlayer.getVolume());
 
+        ClassicalMusic classicalMusic1 = context.getBean("classicalMusic", ClassicalMusic.class);
+        ClassicalMusic classicalMusic2 = context.getBean("classicalMusic", ClassicalMusic.class);
+
+        System.out.println(classicalMusic1.equals(classicalMusic2));
         context.close();
     }
 }

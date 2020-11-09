@@ -1,19 +1,26 @@
 package ua.study;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 @Component
+@Scope("singleton")
 public class ClassicalMusic implements Music {
-    List<String> songList = Arrays.asList("Hungarian Rhapsody", "Du bist die Ruh", "Nocturne in B-flat minor");
+
+    @PostConstruct
+    public void doMyInitialization(){
+        System.out.println("INITIALIZING");
+    }
+
+    @PreDestroy
+    public void myDestroy(){
+        System.out.println("DESTROYING");
+    }
 
     @Override
     public String getSong() {
-        int rnd = new Random().nextInt(2);
-        return songList.get(rnd);
+        return "Hungarian Rhapsody";
     }
 }
