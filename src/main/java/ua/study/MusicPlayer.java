@@ -1,9 +1,11 @@
 package ua.study;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Random;
 
 @Component
 public class MusicPlayer {
@@ -12,17 +14,11 @@ public class MusicPlayer {
     @Value("${musicPlayer.volume}")
     private int _volume;
 
-    @Autowired
-    @Qualifier("electronicMusic")
-    private Music _music1;
-    @Autowired
-    @Qualifier("rockMusic")
-    private Music _music2;
+    private List<Music> _musicList;
 
     @Autowired
-    public MusicPlayer(@Qualifier("electronicMusic") Music music1, @Qualifier("rockMusic") Music music2) {
-        _music1 = music1;
-        _music2 = music2;
+    public MusicPlayer(List<Music> musicList) {
+        _musicList = musicList;
     }
 
     public String getName() {
@@ -34,6 +30,7 @@ public class MusicPlayer {
     }
 
     public String playMusic() {
-        return "Playing: " + _music1.getSong() + "\n" + "Playing: " + _music2.getSong();
+        int rnd = new Random().nextInt(3);
+        return "Playing: " + _musicList.get(rnd).getSong();
     }
 }

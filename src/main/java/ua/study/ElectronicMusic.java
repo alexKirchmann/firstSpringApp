@@ -1,10 +1,10 @@
 package ua.study;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-
 @Component
+@Scope("singleton")
 public class ElectronicMusic implements Music {
     @Override
     public String getSong() {
